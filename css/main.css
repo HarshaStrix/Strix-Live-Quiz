@@ -48,16 +48,16 @@
 .custom-button1 {
   background-color: #fdfefe; /* Green background */
   color: #8e44ad; /* White text color */
-  padding: 15px 30px; /* Padding around text */
+  padding: 15px 60px; /* Padding around text */
   border: none; /* No border */
-  border-radius: 8px; /* Rounded corners */
+  border-radius: 150px 15px 150px 15px; /* Rounded corners */
   font-size: 18px; /* Larger font size */
   text-align: center;
   margin-top: 0px;
 }
 
 .text-color1 {
-  color: #D95136;
+  color: #F8FAFC;
 }
 
 .fullscreen-img {
@@ -78,7 +78,7 @@
 .content {
   position: relative; /* Allows content to be layered above the image */
   z-index: 1; /* Ensures content is visible */
-  padding: 20px;
+  padding: 0px 20px 20px 20px;
   color: white;
   text-align: center;
 }
@@ -89,7 +89,6 @@
     object-position: top center; /* Example: focus on the top part of the image on mobile */
   }
 }
-
 
 
 .border-round {
@@ -130,7 +129,7 @@ html, body {
 }
 
 .bg-my-1{
-  background-color: #D95136;
+  background-color: #484a8b;
 }
 
 .bg-my-2{

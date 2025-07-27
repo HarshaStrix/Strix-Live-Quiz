@@ -56,6 +56,13 @@
   margin-top: 0px;
 }
 
+ @media (max-width: 768px) { /* Applies to screens up to 768px wide */
+      .custom-button1 {
+        border-radius: 100px 8px 100px 8px; /* Smaller radius for mobile */
+        padding: 8px 35px;
+      }
+    }
+
 .text-color1 {
   color: #F8FAFC;
 }
@@ -90,10 +97,20 @@
   }
 }
 
+.responsive {
+  width: 100%;
+  height: auto;
+}
 
 .border-round {
   border-radius: 15px 15px 250px 250px/* Adjust as needed */
 }
+
+ @media (max-width: 768px) { /* Applies to screens up to 768px wide */
+      .border-round {
+        border-radius: 8px 8px 100px 100px; /* Smaller radius for mobile */
+      }
+    }
 
 .timeline-card-primary {
   border-left-color: #4A89DC; }

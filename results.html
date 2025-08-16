@@ -1,12 +1,79 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Strix Live Quiz App</title>
-	<link rel="icon" href="images/logo.jpg" type="images/logo">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Results</title>
+    <link rel="icon" href="images/logo.jpg" type="images/logo">
+    <style>
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            text-align: center;
+        }
 
-    
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: #FAFAF9;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            border-collapse: collapse;
+            table-layout: fixed;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #5D3FD3;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        td {
+            background-color: #ffffff;
+            color: #555;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f8f8f8;
+        }
+
+        #loader {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+
+        #errorMessage {
+            display: none;
+            color: #e74c3c;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+
+
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Open+Sans:wght@300;400;600;700&amp;display=swap" media="print" onload="this.media='all'"/>
@@ -36,61 +103,24 @@
       </style>
     </noscript>
 </head>
-
-
 <body class="bg-my-1">
-  
-<!--<img class="fullscreen-img img content" src="images/quizpop.gif" alt="Live Quiz">-->
-<img class="fullscreen-img border-round content responsive" src="images/quizimagewhite.png" alt="Live Quiz">
 
-<div class="text-center"> 
-  <div> <h2 class="h4 mt-3 text-color1 pb-2">Your Quiz Will Start in</h2> </div>
-    <p></p>
-    <button class="custom-button1">
-      <h2 id="countDown" class="bg-my-4"></h2>
-    </button>
-</div>
-
-<div class="page-content">
-<div class="cover bg-my-1 pad-space-1 pad-space-11">
-  <div class="container pt-2 pb-4 px-3">
-    <div class="row">
-      <div class="col-lg-6"><img class="img-fluid" src="images/banner-image.png" width="532" height="442" alt="Live Quiz"/></div>
-      <div class="col-lg-6">
-        <div class="mt-1">
-          
-        <div class="bg-my-1 cover pad-space-1">
-          <div class="container pt-2 pb-4 px-3">
-          <div class="row">
-          <div class="text-center mb-5">        
-
-            <h6 class="mb-0"><a class="btn btn-primary shadow-sm mt-1" href="https://test.gclocked.com/?form=-OXnsrzudkf6Sgnp22mm" target="_blank">
-              <div> <img src="images/brain.png" width="60" height="60"> </div>
-              <p></p>
-              <font> <h2 class="h5">Start Quiz</h2> </font></a>
-            </h6>
-
-            <p class="pt-2 pb-2"> </p>
-
-            <h6 class="mb-0"><a class="btn btn-primary shadow-sm mt-1" href="results.html" target="_blank">
-              <div> <img src="images/rankings.png" width="50" height="50"> </div>
-              <p></p>
-              <font> <h2 class="h5">View Score</h2> </font></a>
-            </h6>
-          </div>
-          </div>
-          </div>
-        </div>
-      
-      </div>
-      </div>
-    </div>
+    <h1 class="pt-3">Student Results</h1>
+    <div id="loader">Loading data...</div>
+    <div id="errorMessage"></div>
+    <div>
+    <table id="data-table">
+        <thead>
+            <!-- Headers will be dynamically populated by JavaScript -->
+        </thead>
+        <tbody>
+            <!-- Data will be dynamically populated by JavaScript -->
+        </tbody>
+    </table>
+    <script src="script.js"></script>
   </div>
-</div>
-</div>
 
-
-	<footer class="pt-4 pb-4 text-center bg-my-0">
+    <footer class="pt-4 pb-4 text-center bg-my-0">
       <div class="container">
         <div class="my-3">
           <div class="text-center mb-5">
@@ -126,36 +156,6 @@
       </div>
     </footer>
 
-<script>
-// Set the date we're counting down to
-var countDownDate = new Date("August 17, 2025 13:00:00").getTime();
-
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
-    
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-    
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-  // Output the result in an element with id="countDown"
-  document.getElementById("countDown").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-    
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("countDown").innerHTML = "Start";
-  }
-}, 1000);
-</script>
 
 </body>
-</html>  
+</html>

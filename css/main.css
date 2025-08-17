@@ -45,6 +45,16 @@
   left: -29px;
   z-index: 1; }
 
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+}
+
+table {
+  min-width: 600px;
+}
+
 .custom-button1 {
   background-color: #fdfefe; /* Green background */
   color: #8e44ad; /* White text color */

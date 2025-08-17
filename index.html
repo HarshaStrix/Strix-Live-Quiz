@@ -41,12 +41,12 @@
 <body class="bg-my-1">
   
 <!--<img class="fullscreen-img img content" src="images/quizpop.gif" alt="Live Quiz">-->
-<img class="fullscreen-img border-round content responsive" src="images/quizimagewhite.png" alt="Live Quiz">
+<img id="quizImage" class="fullscreen-img border-round content responsive" src="images/quizimagewhite.png" alt="Live Quiz">
 
 <div class="text-center"> 
   <div> <h2 class="h4 mt-3 text-color1 pb-2">Your Quiz Will Start in</h2> </div>
     <p></p>
-    <button class="custom-button1">
+    <button id="countDownBtn" class="custom-button1">
       <h2 id="countDown" class="bg-my-4"></h2>
     </button>
 </div>
@@ -64,19 +64,100 @@
           <div class="row">
           <div class="text-center mb-5">        
 
-            <h6 class="mb-0"><a class="btn btn-primary shadow-sm mt-1" href="https://test.gclocked.com/?form=-OXnsrzudkf6Sgnp22mm" target="_blank">
-              <div> <img src="images/brain.png" width="60" height="60"> </div>
-              <p></p>
-              <font> <h2 class="h5">Start Quiz</h2> </font></a>
+            <h6 id="startQuiz" class="mb-0">
+              <button id="startQuizBtn" class="btn btn-primary shadow-sm mt-1" disabled>
+                <div> <img src="images/brain.png" width="60" height="60"> </div>
+                <p></p>
+                <font> <h2 class="h5">Start Quiz</h2> </font>
+              </button>
             </h6>
 
             <p class="pt-2 pb-2"> </p>
 
-            <h6 class="mb-0"><a class="btn btn-primary shadow-sm mt-1" href="results.html" target="_blank">
-              <div> <img src="images/rankings.png" width="50" height="50"> </div>
-              <p></p>
-              <font> <h2 class="h5">View Score</h2> </font></a>
+            <h6 id="viewScore" class="mb-0">
+              <button id="viewScoreBtn" class="btn btn-primary shadow-sm mt-1" disabled>
+                <div> <img src="images/rankings.png" width="50" height="50"> </div>
+                <p></p>
+                <font> <h2 class="h5">View Score</h2> </font>
+              </button>
             </h6>
+
+            <!--<script>
+              const targetDate = new Date("August 17, 2025 13:00:00 GMT+0530"); // Set your desired future date and time here (e.g., August 17, 2025 at 10:00 AM)
+              const viewScoreButton = document.getElementById("viewScoreBtn"); // Get a reference to the button
+              const startQuizButton = document.getElementById("startQuizBtn"); // Get a reference to the button
+
+              function checkTimeAndEnableButton() {
+                const currentDate = new Date(); // Get the current date and time
+                // Explicitly compare the timestamps (milliseconds since epoch)
+                if (currentDate.getTime() >= targetDate.getTime()) {
+                    viewScoreButton.disabled = false; // Enable the button
+                    viewScoreButton.onclick = function() {
+                      window.open("results.html", "_blank");
+                  }
+
+                    startQuizButton.disabled = false; // Enable the button
+                    startQuizButton.onclick = function() {
+                      window.open("https://test.gclocked.com/?form=-OXnsrzudkf6Sgnp22mm", "_blank");
+                  }
+
+                  } else {
+                    viewScoreButton.disabled = true; // Keep the button disabled
+                    viewScoreButton.onclick = null; //prevent clicks before target time
+
+                    startQuizButton.disabled = true; // Keep the button disabled
+                    startQuizButton.onclick = null; //prevent clicks before target time
+                  }
+              }
+              // Run the check immediately on page load
+              checkTimeAndEnableButton(); 
+
+              // Check the time every second (adjust interval as needed)
+              setInterval(checkTimeAndEnableButton, 1000);
+            </script>-->
+
+            <script>
+              const startQuizButton = document.getElementById("startQuizBtn"); // Get a reference to the button
+              const viewScoreButton = document.getElementById("viewScoreBtn"); // Get a reference to the button
+              const quizImage = document.getElementById("quizImage");          // Get a reference to the button
+              const countDownBtn = document.getElementById("countDownBtn");    // Get a reference to the button
+
+              const quizUrl = "https://test.gclocked.com/?form=-OXnsrzudkf6Sgnp22mm"; // quiz link
+
+              function checkTimeAndEnableButton() {
+                const targetDate = new Date("August 17, 2025 13:00:00 GMT+0530"); 
+                const currentDate = new Date(); // Get the current date and time
+
+                // Explicitly compare the timestamps (milliseconds since epoch)
+                if (currentDate.getTime() >= targetDate.getTime()) {
+                    // Enable Start Quiz button
+                    startQuizButton.disabled = false;
+                    startQuizButton.onclick = () => window.open(quizUrl, "_blank");
+
+                    // Enable View Score button
+                    viewScoreButton.disabled = false;
+                    viewScoreButton.onclick = () => window.open("results.html", "_blank");
+
+                    // Make quiz image and countdown button act like Start Quiz
+                    quizImage.onclick = () => startQuizButton.click();
+                    countDownBtn.onclick = () => startQuizButton.click();
+
+                } else {
+                    // Keep the button disabled
+                    startQuizButton.disabled = true;
+                    viewScoreButton.disabled = true;
+
+                    // prevent clicks before time
+                    quizImage.onclick = null;
+                    countDownBtn.onclick = null;
+                }
+              }
+
+            // Run immediately and then every second
+            checkTimeAndEnableButton();
+            setInterval(checkTimeAndEnableButton, 1000);
+          </script>
+
           </div>
           </div>
           </div>

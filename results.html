@@ -18,6 +18,12 @@
             color: #FAFAF9;
             margin-bottom: 30px;
         }
+        /* Make table scrollable on small screens */
+        table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+        }
 
         table {
             width: 90%;
@@ -29,6 +35,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border-radius: 8px;
             overflow: hidden;
+            min-width: 600px;
         }
 
         th, td {
@@ -39,11 +46,13 @@
         }
 
         th {
-            background-color: #5D3FD3;
+            background-color: #5D3FD3; 
             color: #ffffff;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-transform: uppercase;
+            word-wrap: break-word;
+            white-space: normal;
         }
 
         td {
@@ -70,6 +79,8 @@
             margin-top: 20px;
             font-weight: bold;
         }
+
+
     </style>
 
 
@@ -108,7 +119,7 @@
     <h1 class="pt-3">Student Results</h1>
     <div id="loader">Loading data...</div>
     <div id="errorMessage"></div>
-    <div>
+    <div class="table-responsive">
     <table id="data-table">
         <thead>
             <!-- Headers will be dynamically populated by JavaScript -->
@@ -155,7 +166,5 @@
         </div>
       </div>
     </footer>
-
-
 </body>
 </html>

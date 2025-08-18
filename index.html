@@ -38,18 +38,24 @@
 </head>
 
 
-<body class="bg-my-1">
+<body class="bg-my-1" id="top">
+
+<!-- Return to Top -->
+<a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
   
 <!--<img class="fullscreen-img img content" src="images/quizpop.gif" alt="Live Quiz">-->
-<img id="quizImage" class="fullscreen-img border-round content responsive" src="images/quizimagewhite.png" alt="Live Quiz">
+<a href="#startQuiz">
+  <img id="quizImage" class="fullscreen-img border-round content responsive" src="images/quizimagewhite.png" alt="Live Quiz">
+</a>
 
-<div class="text-center"> 
+<div class="text-center" href="#startQuiz"> 
   <div> <h2 class="h4 mt-3 text-color1 pb-2">Your Quiz Will Start in</h2> </div>
     <p></p>
-    <button id="countDownBtn" class="custom-button1">
+    <button id="countDownBtn" class="custom-button1"> 
       <h2 id="countDown" class="bg-my-4"></h2>
     </button>
 </div>
+
 
 <div class="page-content">
 <div class="cover bg-my-1 pad-space-1 pad-space-11">
@@ -139,8 +145,8 @@
                     viewScoreButton.onclick = () => window.open("results.html", "_blank");
 
                     // Make quiz image and countdown button act like Start Quiz
-                    quizImage.onclick = () => startQuizButton.click();
-                    countDownBtn.onclick = () => startQuizButton.click();
+                    // quizImage.onclick = () => startQuizButton.click();
+                    // countDownBtn.onclick = () => startQuizButton.click();
 
                 } else {
                     // Keep the button disabled
@@ -148,8 +154,8 @@
                     viewScoreButton.disabled = true;
 
                     // prevent clicks before time
-                    quizImage.onclick = null;
-                    countDownBtn.onclick = null;
+                    // quizImage.onclick = null;
+                    // countDownBtn.onclick = null;
                 }
               }
 
